@@ -475,6 +475,33 @@ GovFlow AI implements **Strict Role-Based Access Control (RBAC)**. To allow seam
 
 ---
 
+## 🌐 Deploying to Render (Live Web Hosting)
+
+GovFlow AI is pre-configured with **Infrastructure-as-Code (`render.yaml`)** and standard SPA routing rules (`public/_redirects`), making it accessible from any desktop or mobile browser anywhere without local dependencies.
+
+### Option A: 1-Click Blueprint (Recommended)
+1. Go to **[dashboard.render.com](https://dashboard.render.com)**.
+2. Click **New +** ➔ **Blueprint**.
+3. Connect your GitHub repository (`https://github.com/ybhargavi40021978-alt/GovFlow-AI.git`).
+4. Render will automatically detect [`render.yaml`](file:///d:/Internship/Full%20Stack%20Projects/GovFlow_AI/render.yaml) and pre-fill all settings.
+5. Click **Apply** to deploy.
+
+### Option B: Manual Static Site Setup
+1. On Render Dashboard, click **New +** ➔ **Static Site**.
+2. Connect your GitHub repository: `GovFlow-AI`.
+3. Configure the following fields:
+   - **Name:** `govflow-ai`
+   - **Branch:** `main`
+   - **Build Command:** `npm install && npm run build`
+   - **Publish Directory:** `dist`
+4. Under **Redirects/Rewrites**:
+   - **Type:** `Rewrite`
+   - **Source:** `/*`
+   - **Destination:** `/index.html`
+5. Click **Create Static Site**. Your live URL will be active in ~1-2 minutes (e.g., `https://govflow-ai.onrender.com`).
+
+---
+
 ## 🛡️ Security, Privacy & DPDP Compliance
 
 GovFlow AI is architected in accordance with the **Digital Personal Data Protection (DPDP) Act 2023**:
