@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --text-scale: 1;
+  }
+
+  html {
+    font-size: calc(16px * var(--text-scale));
+    scroll-behavior: smooth;
+  }
+
+  /* Accessibility: Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* High Contrast Mode */
+  .high-contrast {
+    filter: contrast(125%);
+  }
+
+  .high-contrast body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .high-contrast a, 
+  .high-contrast button {
+    outline: 2px solid currentColor !important;
+  }
+
+  /* Text scaling helpers */
+  .text-scale-sm {
+    --text-scale: 0.9;
+  }
+  .text-scale-base {
+    --text-scale: 1;
+  }
+  .text-scale-lg {
+    --text-scale: 1.15;
+  }
+}
+
+/* Custom modern scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
