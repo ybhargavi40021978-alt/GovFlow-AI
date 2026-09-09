@@ -475,30 +475,36 @@ GovFlow AI implements **Strict Role-Based Access Control (RBAC)**. To allow seam
 
 ---
 
-## 🌐 Deploying to Render (Live Web Hosting)
+## 🌐 Deploying to Render (Live Web Service)
 
-GovFlow AI is pre-configured with **Infrastructure-as-Code (`render.yaml`)** and standard SPA routing rules (`public/_redirects`), making it accessible from any desktop or mobile browser anywhere without local dependencies.
+GovFlow AI is fully configured to run live as a **Node.js Web Service** on Render, complete with an **Express 5 SPA server (`server.js`)**, automated **health check probe (`/healthz`)**, and Infrastructure-as-Code blueprint ([`render.yaml`](file:///d:/Internship/Full%20Stack%20Projects/GovFlow_AI/render.yaml)). This enables 24/7 cloud availability accessible from any mobile or desktop browser without local dependencies.
 
 ### Option A: 1-Click Blueprint (Recommended)
-1. Go to **[dashboard.render.com](https://dashboard.render.com)**.
+1. Go to **[dashboard.render.com](https://dashboard.render.com)** and sign in.
 2. Click **New +** ➔ **Blueprint**.
-3. Connect your GitHub repository (`https://github.com/ybhargavi40021978-alt/GovFlow-AI.git`).
-4. Render will automatically detect [`render.yaml`](file:///d:/Internship/Full%20Stack%20Projects/GovFlow_AI/render.yaml) and pre-fill all settings.
-5. Click **Apply** to deploy.
-
-### Option B: Manual Static Site Setup
-1. On Render Dashboard, click **New +** ➔ **Static Site**.
-2. Connect your GitHub repository: `GovFlow-AI`.
-3. Configure the following fields:
-   - **Name:** `govflow-ai`
-   - **Branch:** `main`
+3. Connect your GitHub repository: `https://github.com/ybhargavi40021978-alt/GovFlow-AI.git`.
+4. Render will auto-detect [`render.yaml`](file:///d:/Internship/Full%20Stack%20Projects/GovFlow_AI/render.yaml) and automatically configure the Web Service with:
+   - **Environment:** `Node`
    - **Build Command:** `npm install && npm run build`
-   - **Publish Directory:** `dist`
-4. Under **Redirects/Rewrites**:
-   - **Type:** `Rewrite`
-   - **Source:** `/*`
-   - **Destination:** `/index.html`
-5. Click **Create Static Site**. Your live URL will be active in ~1-2 minutes (e.g., `https://govflow-ai.onrender.com`).
+   - **Start Command:** `npm start`
+   - **Health Check Path:** `/healthz`
+5. Click **Apply**. Render will build and deploy the live web service with a public URL (e.g., `https://govflow-ai.onrender.com`).
+
+### Option B: Manual Web Service Setup
+1. On Render Dashboard, click **New +** ➔ **Web Service**.
+2. Select your repository: `GovFlow-AI`.
+3. Configure the settings:
+   - **Name:** `govflow-ai`
+   - **Region:** Any (e.g. Oregon, Frankfurt, Singapore)
+   - **Branch:** `main`
+   - **Root Directory:** *(leave blank)*
+   - **Runtime:** `Node`
+   - **Build Command:** `npm install && npm run build`
+   - **Start Command:** `npm start`
+   - **Plan:** `Free`
+4. Expand **Advanced**:
+   - **Health Check Path:** `/healthz`
+5. Click **Create Web Service**. Your live production instance will be built and launched with an automated HTTPS URL!
 
 ---
 
